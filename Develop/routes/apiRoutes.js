@@ -1,8 +1,8 @@
-const Fitness = require("../models/fitness");
+const Workout = require("../models/Workout");
 
 module.exports = function(app){
-    app.get("/api/fitness", function(req,res){
-        Fitness.find()
+    app.get("/api/workouts", function(req,res){
+        Workout.find()
         .then(data =>{
             res.json(data)
         })
@@ -11,16 +11,16 @@ module.exports = function(app){
         })
     });
 
-    app.post("/api/fitness",function (req,res){    
-        Fitness.create({})
+    app.post("/api/workouts",function (req,res){    
+        Workout.create({})
         .then(data => res.json(data))
         .catch(err => { 
             res.json(err)
         })
     });
 
-    app.get("/api/fitness/range",function(req,res){  
-        Fitness.find()
+    app.get("/api/workouts/range",function(req,res){  
+        Workout.find()
         .then(data =>{  
             res.json(data)
         })
@@ -30,16 +30,16 @@ module.exports = function(app){
     });
 
 
-    app.post("/api/fitness/range",function (req,res){    
-        Fitness.create({})
+    app.post("/api/workouts/range",function (req,res){    
+        Workout.create({})
         .then(data => res.json(data))
         .catch(err => { 
             res.json(err)
         })
     });
 
-    app.put("/api/fitness/:id",({body,params},res)=>{   
-        Fitness.findByIdAndUpdate(  
+    app.put("/api/workouts/:id",({body,params},res)=>{   
+        Workout.findByIdAndUpdate(  
          params.id,
          {$push:{exercises:body} },
          {new: true,runValidators:true }
